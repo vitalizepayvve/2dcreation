@@ -38,12 +38,23 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
             font-size: 1.8rem;
             font-weight: bold;
             color: #ff6b6b;
         }
 
-        .logo span {
+        .logo-text span {
             color: #333;
         }
 
@@ -176,6 +187,43 @@
             margin-bottom: 1rem;
         }
 
+        /* About & Contact Section */
+        .about-contact {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about, .contact {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about h2, .contact h2 {
+            margin-bottom: 1.5rem;
+            color: #ff6b6b;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: #ff6b6b;
+        }
+
         /* Promo Banner */
         .promo-banner {
             background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
@@ -243,6 +291,10 @@
             .products {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
+
+            .about-contact {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -250,7 +302,10 @@
     <!-- Header & Navigation -->
     <header>
         <nav class="navbar">
-            <div class="logo">2D <span>Creations</span></div>
+            <div class="logo">
+                <img src="images/1.jpeg" alt="2D Creations Logo">
+                <div class="logo-text">2D <span>Creations</span></div>
+            </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#shop">Shop</a>
@@ -316,6 +371,25 @@
         </div>
     </section>
 
+    <!-- About & Contact Section -->
+    <section class="about-contact" id="about">
+        <div class="about">
+            <h2>About 2D Creations</h2>
+            <p>2D Creations is a unique clothing brand that brings your favorite 2D art to life through wearable fashion. We combine high-quality materials with stunning designs to create clothing that stands out.</p>
+            <p>Our mission is to bridge the gap between digital art and fashion, allowing you to express your love for animation, comics, and pixel art through your wardrobe.</p>
+        </div>
+        <div class="contact" id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions or need assistance? Reach out to our team!</p>
+            <div class="contact-info">
+                <p><i class="fas fa-user"></i> Karthick</p>
+                <p><i class="fas fa-envelope"></i> karthick@2dcreation.in</p>
+                <p><i class="fas fa-phone"></i> +91 97918 81884</p>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Promo Banner -->
     <section class="promo-banner">
         <h2>Limited Time Offer!</h2>
@@ -324,7 +398,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="footer-links">
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
