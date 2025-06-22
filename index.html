@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domine | Unique Fashion Inspired Clothing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* Global Styles */
         * {
@@ -17,6 +18,7 @@
         body {
             background-color: #f9f9f9;
             color: #333;
+            overflow-x: hidden;
         }
 
         /* Header & Navigation */
@@ -26,6 +28,18 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            animation: fadeInDown 0.8s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .navbar {
@@ -41,6 +55,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
@@ -67,16 +86,38 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
         }
 
         .nav-links a:hover {
             color: #ff6b6b;
         }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .cart-icon {
             font-size: 1.2rem;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.2);
+            color: #ff6b6b;
         }
 
         /* Hero Section */
@@ -88,6 +129,7 @@
             text-align: center;
             color: #fff;
             position: relative;
+            animation: fadeIn 1s;
         }
 
         .hero::before {
@@ -111,11 +153,13 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            animation: fadeInUp 1s 0.3s both;
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.5s both;
         }
 
         .btn {
@@ -127,11 +171,40 @@
             border-radius: 5px;
             font-weight: bold;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            animation: fadeInUp 1s 0.7s both;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
             background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.4s;
+            background-color: #ff6b6b;
+        }
+
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
         }
 
         /* Featured Products */
@@ -139,6 +212,14 @@
             padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s;
+        }
+
+        .featured.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -146,6 +227,25 @@
             margin-bottom: 3rem;
             font-size: 2rem;
             color: #333;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .section-title:hover::after {
+            width: 80%;
         }
 
         .products {
@@ -159,17 +259,35 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:nth-child(1) { transition-delay: 0.1s; }
+        .product-card:nth-child(2) { transition-delay: 0.2s; }
+        .product-card:nth-child(3) { transition-delay: 0.3s; }
+        .product-card:nth-child(4) { transition-delay: 0.4s; }
+
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .product-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
         }
 
         .product-info {
@@ -179,6 +297,11 @@
         .product-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .product-card:hover .product-title {
+            color: #ff6b6b;
         }
 
         .product-price {
@@ -202,11 +325,44 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .about.animate, .contact.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about { transition-delay: 0.1s; }
+        .contact { transition-delay: 0.2s; }
+
+        .about:hover, .contact:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .about h2, .contact h2 {
             margin-bottom: 1.5rem;
             color: #ff6b6b;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after, .contact h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .about:hover h2::after, .contact:hover h2::after {
+            width: 100%;
         }
 
         .contact-info {
@@ -217,11 +373,21 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .contact-info p:hover {
+            transform: translateX(5px);
         }
 
         .contact-info i {
             margin-right: 1rem;
             color: #ff6b6b;
+            transition: transform 0.3s;
+        }
+
+        .contact-info p:hover i {
+            transform: scale(1.2);
         }
 
         /* Promo Banner */
@@ -231,11 +397,50 @@
             text-align: center;
             padding: 3rem 5%;
             margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+            }
+            to {
+                box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+            }
         }
 
         .promo-banner h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-banner p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Footer */
@@ -244,6 +449,7 @@
             color: #fff;
             padding: 3rem 5%;
             text-align: center;
+            animation: fadeInUp 0.8s;
         }
 
         .footer-links {
@@ -251,11 +457,33 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
             color: #fff;
             text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
         }
 
         .social-icons {
@@ -266,11 +494,49 @@
             color: #fff;
             margin: 0 0.5rem;
             font-size: 1.5rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            color: #ff6b6b;
+            transform: translateY(-5px) scale(1.2);
         }
 
         .copyright {
             font-size: 0.9rem;
             opacity: 0.8;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: #ff5252;
+            transform: translateY(-5px);
         }
 
         /* Responsive Design */
@@ -282,6 +548,8 @@
 
             .nav-links {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .hero h1 {
@@ -295,10 +563,19 @@
             .about-contact {
                 grid-template-columns: 1fr;
             }
+            
+            .about, .contact {
+                margin-bottom: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Header & Navigation -->
     <header>
         <nav class="navbar">
@@ -385,7 +662,7 @@
                 <p><i class="fas fa-user"></i> Karthick</p>
                 <p><i class="fas fa-envelope"></i> karthick@domine.in</p>
                 <p><i class="fas fa-phone"></i> +91 97918 81884</p>
-                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+                <p><i class="fas fa-map-marker-alt"></i> Tirupur, Tamil Nadu</p>
             </div>
         </div>
     </section>
@@ -410,7 +687,64 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-facebook"></i></a>
         </div>
-        <p class="copyright">© 2023 Domine. All Rights Reserved.</p>
+        <p class="copyright">© 2025 Domine. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.featured, .product-card, .about, .contact');
+            
+            const animateOnScroll = function() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate');
+                    }
+                });
+                
+                // Scroll to top button
+                const scrollTopBtn = document.querySelector('.scroll-top');
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            };
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Scroll to top functionality
+            document.querySelector('.scroll-top').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
